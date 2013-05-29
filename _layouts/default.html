@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="{{ site.author.firstName }} {{ site.author.lastName }}">
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
+</head>
+<body>
+    <header id="header" role="banner" class="container">
+        <nav id="navigation" role="navigation">
+            <div class="nav-item"><a href="/" class="logo">MOB</a></div>
+            <div class="nav-item"><a href="/">About</a></div>
+            <div class="nav-item"><a href="/blog.html">Blog</a></div>
+        </nav>
+    </header>
+    <!-- /header -->
+
+    <section id="main" role="main" class="container">
+        {{ content }}
+    </section>
+    <!-- /main -->
+
+    <footer id="footer" role="contentinfo" class="container">
+        <p>Handcrafted pixels from {{site.author.location}}</p>
+        <p><a href="http://feeds.feedburner.com/{{site.author.feedBurner}}">Blog RSS</a></p>
+    </footer>
+    <!-- /footer -->
+</body>
+</html>

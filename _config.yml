@@ -1,0 +1,7 @@
+auto : true
+permalink : /:title/
+exclude : ['sass', 'config.rb', 'README.md']
+
+title : Makers of Boston
+description : Handcrafted Pixels
+url : http://makersofboston.com
