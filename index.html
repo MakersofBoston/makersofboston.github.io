@@ -3,6 +3,15 @@ layout: default
 ---
 
 <header>
-    <img src="images/MOB_Logo.png">
+    <h1>Makers of Boston</h1>
 </header>
-
+<section id="blog-list">
+    {% for post in site.posts %}
+        <article class="post">
+            <a href="{{ post.url }}">
+                <span class="post-date">{{ post.date | date: "%b %d" }}</span>
+                <span class="post-title">{{ post.title }}</span>
+            </a>
+        </article>
+    {% endfor %}
+</section>

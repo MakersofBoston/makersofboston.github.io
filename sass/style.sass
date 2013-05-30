@@ -7,9 +7,10 @@
 // Type
 $baseFontSize:      1rem
 $lineHeight:        1.9
-$serif:             'PT Serif', georgia, 'Times New Roman', 'Times', serif
-$sansSerif:         helvetica, arial, sans-serif
-$h1Size:            1rem * 2
+$bodyFont:          'ff-tisa-web-pro', georgia, 'Times New Roman', 'Times', serif
+$headlineFont:      'jubilat', georgia, 'Times New Roman', 'Times', serif
+$navigationFont:    helvetica, arial, sans-serif
+$h1Size:            1rem * 3.5
 $h2Size:            1rem * 1.5
 $h3Size:            1rem
 $h4-6Size:          1rem
@@ -17,7 +18,6 @@ $h4-6Size:          1rem
 
 // colors
 $backgroundColor:   #fff
-$borderColor:       #ddd
 $typeColor:         #444
 $mediumTypeColor:   lighten($typeColor, 20%)
 $lightTypeColor:    lighten($typeColor, 40%)
@@ -26,7 +26,6 @@ $linkColor:         #3288E6
 //layout
 $columnWidth:       35rem
 $wideColumnWidth:   $columnWidth*1.45
-$border:            1px dotted #ccc
 
 @mixin column($size: wide)
     margin-left: auto
@@ -45,29 +44,31 @@ html
 
 body
     margin: 0px
-    font-family: $serif
+    font-family: $bodyFont
     font-size: $baseFontSize
     color: $typeColor
     line-height: $lineHeight + em
     background-color: $backgroundColor
 
 h1, h2, h3, h4, h5, h6
-    font-family: $serif
+    font-family: $headlineFont
     font-weight: 400
-    text-rendering: optimizeLegibility
     margin-top: $lineHeight + rem
     margin-bottom: $lineHeight + rem
 
 h1
     font-size: $h1Size
     line-height: $lineHeight*2 + rem
+    font-weight: 700
 
     @media all and (max-width: 560px)
         font-size: $h1Size*0.8
-        line-height: $lineHeight + rem
+        line-height: 1em
 
 h2
     font-size: $h2Size
+    font-weight: 500
+    text-transform: uppercase
 
 h3
     font-size: $h3Size
@@ -84,7 +85,7 @@ p + p
 
 blockquote
     margin: $lineHeight + rem 0
-    border-left: 2px solid #ddd
+    border-left: 2px solid $lightTypeColor
     color: $mediumTypeColor
     font-style: italic
 
@@ -114,34 +115,30 @@ ul, ol
 a
     text-decoration: none
 
-#header
-    font-family: $serif
-    padding: 0
-    background-color: #E54F4C
+#navigation
+    border-bottom: 2px solid $typeColor
+    @include column(skinny)
+    +pie-clearfix()
 
-    #navigation
-        @include column(skinny)
-        +pie-clearfix()
+    .nav-item
+        float: left
 
-        .nav-item
-            float: left
+        a
+            display: block
+            line-height: $lineHeight*2 + rem
+            padding: 0 $lineHeight + rem
+            font-family: $navigationFont
+            color: $typeColor
+            text-transform: uppercase
+            letter-spacing: 0.15em
+            font-weight: bold
+            font-size: .8rem
 
-            a
-                display: block
-                line-height: $lineHeight*2 + rem
-                padding: 0 $lineHeight + rem
-                font-family: $sansSerif
-                color: #B51F1C
-                text-transform: uppercase
-                letter-spacing: 0.15em
-                font-weight: bold
-                font-size: .8rem
+            &:hover
+                color: $lightTypeColor
 
-                &:hover
-                    color: #850F0C
-
-                &.logo
-                    margin-left: -$lineHeight + rem
+            &.logo
+                margin-left: -$lineHeight + rem
 
 #main
 
@@ -229,21 +226,13 @@ a
             &.right
                 float: right
 
-    #about
-
-        &:before
-            border-top: $border
-
-        img
-            margin-bottom: $lineHeight + rem
-
     #blog-list
         @include column(skinny)
 
         .post
 
             + .post
-                border-top: $border
+                border-top: 1px dotted $lightTypeColor
 
             a
                 +pie-clearfix()
@@ -268,7 +257,7 @@ a
                 float: left
 
     .post-date
-        font-style: italic
+        font-family: bodyFont
         font-size: 0.8rem
         text-transform: uppercase
         color: $lightTypeColor
@@ -279,7 +268,7 @@ a
     margin-top: $lineHeight*3 + rem
     color: $lightTypeColor
     text-align: center
-    border-top: $border
+    border-top: 2px solid $typeColor
     font-size: .8rem
 
     a
