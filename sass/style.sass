@@ -7,17 +7,19 @@
 // Type
 $baseFontSize:      1rem
 $lineHeight:        1.9
-$bodyFont:          'ff-tisa-web-pro', georgia, 'Times New Roman', 'Times', serif
-$headlineFont:      'jubilat', georgia, 'Times New Roman', 'Times', serif
-$navigationFont:    helvetica, arial, sans-serif
-$h1Size:            1rem * 3.5
+$serifFont:         'pt-serif', georgia, 'Times New Roman', 'Times', serif
+$sansSerifFont:     'pt-sans', georgia, 'Times New Roman', 'Times', serif
+$headlineFont:      'pt-sans-narrow', helvetica, arial, sans-serif
+$navigationFont:    'pt-sans-narrow', helvetica, arial, sans-serif
+$h1Size:            1rem * 3
 $h2Size:            1rem * 1.5
-$h3Size:            1rem
+$h3Size:            1rem * 1.2
 $h4-6Size:          1rem
 
 
 // colors
-$backgroundColor:   #fff
+$brandColor:        #32405A
+$backgroundColor:   #EEEEEE
 $typeColor:         #444
 $mediumTypeColor:   lighten($typeColor, 20%)
 $lightTypeColor:    lighten($typeColor, 40%)
@@ -44,7 +46,7 @@ html
 
 body
     margin: 0px
-    font-family: $bodyFont
+    font-family: $serifFont
     font-size: $baseFontSize
     color: $typeColor
     line-height: $lineHeight + em
@@ -52,7 +54,8 @@ body
 
 h1, h2, h3, h4, h5, h6
     font-family: $headlineFont
-    font-weight: 400
+    text-transform: uppercase
+    letter-spacing: 0.1em
     margin-top: $lineHeight + rem
     margin-bottom: $lineHeight + rem
 
@@ -67,15 +70,15 @@ h1
 
 h2
     font-size: $h2Size
-    font-weight: 500
-    text-transform: uppercase
+    font-weight: 700
 
 h3
     font-size: $h3Size
-    text-transform: uppercase
+    font-weight: 400
 
 h4, h5, h6
     font-size: $h4-6Size
+    font-weight: 400
 
 p
     margin: 0
@@ -115,30 +118,29 @@ ul, ol
 a
     text-decoration: none
 
+#header
+    background-color: $brandColor
+
 #navigation
-    border-bottom: 2px solid $typeColor
     @include column(skinny)
     +pie-clearfix()
 
     .nav-item
         float: left
+        display: block
+        line-height: $lineHeight*2 + rem
+        padding: 0 $lineHeight + rem
+        font-family: $navigationFont
+        font-size: $h4-6Size
+        text-transform: uppercase
+        color: #fff
+        letter-spacing: 0.1em
 
-        a
-            display: block
-            line-height: $lineHeight*2 + rem
-            padding: 0 $lineHeight + rem
-            font-family: $navigationFont
-            color: $typeColor
-            text-transform: uppercase
-            letter-spacing: 0.15em
-            font-weight: bold
-            font-size: .8rem
+        &:hover
+            color: $lightTypeColor
 
-            &:hover
-                color: $lightTypeColor
-
-            &.logo
-                margin-left: -$lineHeight + rem
+        &.logo
+            margin-left: -$lineHeight + rem
 
 #main
 
@@ -156,10 +158,20 @@ a
         @include column(wide)
 
     header
-        margin: $lineHeight*2 + rem 0 $lineHeight + rem
-
+        background-color: rgba($brandColor, 0.5)
+        padding: $lineHeight*3 + rem 0 $lineHeight*2 + rem
+        margin-bottom: $lineHeight*2 + rem
+        color: #FFFFFF
+        +text-shadow(rgba(black, 0.5) 0 2px 4px)
+        text-align: center
         @media all and (max-width: 560px)
-            margin-top: $lineHeight + rem
+            padding: $lineHeight + rem 0
+            margin-bottom: $lineHeight + rem
+
+        .page-title
+            margin: 0 auto
+
+
 
     a
         color: $typeColor
@@ -188,88 +200,77 @@ a
                     display: block
                     padding: 0
 
+#post
 
-    #post
+    .intro
+        font-family: $sansSerifFont
+        font-size: $h3Size
+        font-weight: 700
+        text-align: left
 
-        &:after
+    img
+        margin:
+            top: $lineHeight + rem
+            bottom: $lineHeight + rem
+
+    .block-image
+        max-height: 30rem
+
+    .full-width-image
+        padding: 0
+        max-width: 100%
+
+    .floated-image
+        display: inline
+
+        &.left
+            float: left
+        &.right
+            float: right
+
+#blog-list
+    @include column(skinny)
+
+    .post
+
+        + .post
+            border-top: 1px dotted $lightTypeColor
+
+        a
+            +pie-clearfix()
             display: block
-            content: "***"
-            text-align: center
-            font-size: 2rem
-            color: $lightTypeColor
-            margin: $lineHeight + rem 0
+            padding: 0.5em 0
+            border: 0
+            &:hover
 
-        header
+                .post-title
 
-            h2, h1
-                margin:
-                    top: 0
-                    bottom: 0
+                    &:after
+                        margin-left: 5px
+                        display: inline
+                        content: '\2192'
 
-        img
+        .page-title
+            width: 80%
+            float: right
+
+        .post-date
+            width: 20%
+            float: left
             margin:
-                top: $lineHeight + rem
-                bottom: $lineHeight + rem
+                top: 0
+                bottom: 0
 
-        .block-image
-            max-height: 30rem
-
-        .full-width-image
-            padding: 0
-            max-width: 100%
-
-        .floated-image
-            display: inline
-
-            &.left
-                float: left
-            &.right
-                float: right
-
-    #blog-list
-        @include column(skinny)
-
-        .post
-
-            + .post
-                border-top: 1px dotted $lightTypeColor
-
-            a
-                +pie-clearfix()
-                display: block
-                padding: 0.5em 0
-                border: 0
-                &:hover
-
-                    .post-title
-
-                        &:after
-                            margin-left: 5px
-                            display: inline
-                            content: '\2192'
-
-            .post-title
-                width: 80%
-                float: right
-
-            .post-date
-                width: 20%
-                float: left
-
-    .post-date
-        font-family: bodyFont
-        font-size: 0.8rem
-        text-transform: uppercase
-        color: $lightTypeColor
+.post-date
+    font-family: $headlineFont
 
 #footer
-    @include column(skinny)
     padding: $lineHeight + rem 0
     margin-top: $lineHeight*3 + rem
-    color: $lightTypeColor
+    color: #FFFFFF
     text-align: center
-    border-top: 2px solid $typeColor
     font-size: .8rem
+    background-color: $brandColor
 
     a
-        color: $lightTypeColor
+        color: #FFFFFF
