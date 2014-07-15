@@ -3,9 +3,8 @@ layout: default
 ---
 <article id="post">
     <header>
-        <h1 class="page-title">{{page.title}}</h1>
-        <p class="post-date">{{ page.date | date: "%b %d, %Y" }}</p>
-        <p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae massa a justo malesuada dictum. Mauris id purus non nisi condimentum sagittis ut at lacus. Ut in augue quis lacus bibendum pretium.</p>
+        <h1 class="page-title">{{ page.title }}</h1>
+        <p class="post-date">{{ page.post_author }} - {{ page.date | date: "%b %d, %Y" }}</p>
     </header>
 
     {{ content }}
